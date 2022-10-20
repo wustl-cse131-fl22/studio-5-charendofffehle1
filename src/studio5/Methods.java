@@ -1,5 +1,7 @@
 package studio5;
 
+//import org.graalvm.compiler.printer.CanonicalStringGraphPrinter;
+
 import edu.princeton.cs.introcs.StdDraw;
 
 public class Methods {
@@ -14,7 +16,9 @@ public class Methods {
 	 * @return the Euclidean distance between (x1,y1) and (x2,y2)
 	 */
 	public static double distanceBetween(double x1, double y1, double x2, double y2) {
-		double distance = 0;
+		double newx = Math.pow((x1-x2),2);
+		double newy = Math.pow((y1-y2),2);
+		double distance = Math.sqrt(newx+newy);
 		// FIXME: Hint use Math methods (e.g. Math.sqrt) to compute the distance
 		
 		return distance;
@@ -35,17 +39,23 @@ public class Methods {
 		// Blue ring with 3.0/4.0 the radius
 		// suggested rgb values: 0, 109, 219
 
-		
+		StdDraw.setPenColor(0,109,219);
+		double brad = radius*(3.0/4.0);
+		StdDraw.filledCircle(x, y, brad);
 
 		// Red ring with 1.0/2.0 the radius
 		// suggested rgb values: 146, 0, 0
 
-		
+		StdDraw.setPenColor(146,0,0);
+		double rrad = radius*(1.0/2.0);
+		StdDraw.filledCircle(x, y, rrad);
 
 		// Yellow ring with 1.0/4.0 the radius
 		// suggested rgb values: 255, 255, 109
 
-		
+		StdDraw.setPenColor(255,255,109);
+		double yrad = radius*(1.0/4.0);
+		StdDraw.filledCircle(x, y, yrad);
 	}
 
 	/**
@@ -62,6 +72,22 @@ public class Methods {
 	public static String substituteAll(String source, char target, String replacement) {
 		String result = "";
 		// TODO: Finish this method
+	char[] start = source.toCharArray();
+	
+		for(int i =0; i<source.length(); i++)
+		{
+			
+			if (start[i]==target)
+			{
+				
+				result = result + replacement;
+			}
+			else 
+			{
+				result = result + start[i];
+			}
+		}
+		
 		
 		return result;
 	}
@@ -75,7 +101,10 @@ public class Methods {
 	public static int arraySum(int[] values) {
 		int sum = 0;
 		// FIXME: Compute the sum of the values in an array
-		
+		for (int i = 0 ; i<values.length; i++)
+		{
+			sum = sum + values[i];
+		}
 		return sum;
 	}
 
@@ -87,14 +116,33 @@ public class Methods {
 	 * @return and array of size that's filled with value
 	 */
 	public static int[] filledArray(int length, int value) {
-		int[] values = null; // FIXME: Create an array of the appropriate size
+		int[] values = new int[length]; // FIXME: Create an array of the appropriate size
 		// TODO: Finish this method
-
-		
+		for (int i = 0; i<length; i++)
+		{
+			values[i] = value;
+			
+		}
 
 		return values;
 	}
 
+	public static double arrayMean(int[]values) {
+		
+		int sum = arraySum(values);
+		double mean = sum/values.length;
+		
+		return mean;
+
+//		double j = 0.0;
+//		for(int i = 0; i <numbers.length; i++)
+//		{
+//			j++;
+//
+//			mean = (mean + numbers[i])/j;
+//		}
+		
+	}
 	// TODO: Create an arrayMean method which accepts an int array of values parameter.
 	// TODO: Create a JavaDoc comment for the arrayMean method.
 
